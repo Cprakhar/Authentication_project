@@ -24,7 +24,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://127.0.0.1:27017/userDB');
+mongoose.connect('mongodb+srv://Pchhalotre:OnePiece%40Luffy321chh@cluster0.go8pvor.mongodb.net/userDB');
 
 const userSchema = new mongoose.Schema({
     email: String,
@@ -140,11 +140,13 @@ app.route('/register')
 
 app.route('/secrets')
     .get(function(req, res){
-        if(req.isAuthenticated()){
-            res.render('secrets');
-        }else{
-            res.redirect('/login');
-        }
+        userData.find({secret: {$ne: null}}, function(err, foundsecrets){
+            if(err){
+                console.log(err);
+            }else{
+                res.render('secrets', {userSecrets: foundsecrets});
+            }
+        });
     })    
 
 app.route('/logout')
@@ -169,7 +171,6 @@ app.route('/submit')
     })   
     .post(function(req, res){
         const secret = req.body.secret;
-        console.log(req);
         userData.findById(req.user.id, function(err, founduser){
             if(err){
                 console.log(err);
