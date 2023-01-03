@@ -62,7 +62,7 @@ passport.serializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/google/secrets',
+    callbackURL: 'http://anonymous-secrets.cyclic.app/auth/google/secrets',
   },
   function(accessToken, refreshToken, profile, cb) {
     userData.findOrCreate({ googleId: profile.id, username: profile.id}, function (err, user) {
@@ -74,7 +74,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FB_CLIENT_ID,
     clientSecret: process.env.FB_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/facebook/secrets'
+    callbackURL: 'http://anonymous-secrets.cyclic.app/auth/facebook/secrets'
   },
   function(accessToken, refreshToken, profile, cb) {
     userData.findOrCreate({ facebookId: profile.id, username: profile.id}, function (err, user) {
@@ -86,7 +86,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GitHubStrategy({
     clientID: process.env.GIT_CLIENT_ID,
     clientSecret: process.env.GIT_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/github/secrets'
+    callbackURL: 'http://anonymous-secrets.cyclic.app/auth/github/secrets'
   },
   function(accessToken, refreshToken, profile, done) {
     userData.findOrCreate({ githubId: profile.id, username: profile.id}, function (err, user) {
