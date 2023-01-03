@@ -74,7 +74,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.FB_CLIENT_ID,
     clientSecret: process.env.FB_CLIENT_SECRET,
-    callbackURL: 'http://anonymous-secrets.cyclic.app/auth/facebook/secrets'
+    callbackURL: 'https://anonymous-secrets.cyclic.app/auth/facebook/secrets'
   },
   function(accessToken, refreshToken, profile, cb) {
     userData.findOrCreate({ facebookId: profile.id, username: profile.id}, function (err, user) {
