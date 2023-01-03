@@ -62,7 +62,7 @@ passport.serializeUser(function(user, cb) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'http://anonymous-secrets.cyclic.app/auth/google/secrets',
+    callbackURL: 'https://anonymous-secrets.cyclic.app/auth/google/secrets',
   },
   function(accessToken, refreshToken, profile, cb) {
     userData.findOrCreate({ googleId: profile.id, username: profile.id}, function (err, user) {
